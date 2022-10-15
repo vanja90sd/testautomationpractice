@@ -13,6 +13,8 @@ namespace TestAutomationPractice.Pages
         public By contactUs = By.Id("contact-link");
         public By searchField = By.Id("search_query_top");
         public By searchBtn = By.Name("sumbit_search");
+        public By signIn = By.ClassName("login");
+
 
 
         public HomePage(IWebDriver driver)

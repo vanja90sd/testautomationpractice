@@ -36,15 +36,33 @@ namespace TestAutomationPractice.Helpers
 
         }
 
+        internal void ClickOnElement(object signInBtn)
+        {
+            throw new NotImplementedException();
+        }
+
         public void EnterTextInElement(By locator, string text) 
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator)).SendKeys(text);
         }
 
+        internal bool ElementIsDisplayed()
+        {
+            throw new NotImplementedException();
+        }
+
         public string ReturnTextFromElement(By locator)
         {
             return driver.FindElement(locator).Text;
+        }
+
+        public bool ElementIsDisplayed(By locator)
+        {
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator)).Displayed;
+
+                
         }
 
     }
