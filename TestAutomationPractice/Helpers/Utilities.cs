@@ -33,13 +33,8 @@ namespace TestAutomationPractice.Helpers
             var dropdown = driver.FindElement(select);
             var selectElement = new SelectElement(dropdown);
             selectElement.SelectByText(option);
-
         }
 
-        internal void ClickOnElement(object signInBtn)
-        {
-            throw new NotImplementedException();
-        }
 
         public void EnterTextInElement(By locator, string text) 
         {
@@ -47,23 +42,31 @@ namespace TestAutomationPractice.Helpers
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator)).SendKeys(text);
         }
 
-        internal bool ElementIsDisplayed()
-        {
-            throw new NotImplementedException();
-        }
 
         public string ReturnTextFromElement(By locator)
         {
-            return driver.FindElement(locator).Text;
+            return driver.FindElement(locator).GetAttribute("textContent");
         }
 
         public bool ElementIsDisplayed(By locator)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator)).Displayed;
-
-                
         }
 
+        public bool TextPresentInElement (string text)
+        {
+            By textElement = By.XPath("//*[contains(text(),'" + text + "')]");
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(textElement)).Displayed;
+        }
+
+
+        public IList<IWebElement> ReturnCategoryList(string catName)
+        {
+            By catOption = By.CssSelector(".sf-menu [title='" + catName + "']");
+            IList<IWebElement> category = driver.FindElements(catOption);
+            return category;
+        }
     }
 }
