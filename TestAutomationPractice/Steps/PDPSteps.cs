@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 using TestAutomationPractice.Helpers;
@@ -53,13 +54,14 @@ namespace TestAutomationPractice.Steps
         [When(@"user proceeds to checkout")]
         public void WhenUserProceedsToCheckout()
         {
-            ScenarioContext.Current.Pending();
+            PDPage pdp = new PDPage(Driver);
+            ut.ClickOnElement(pdp.proceedToCheckoutBtn);
         }
         
         [Then(@"cart summary is displayed and product is added to cart")]
         public void ThenCartSummaryIsDisplayedAndProductIsAddedToCart()
         {
-            ScenarioContext.Current.Pending();
+            Assert.True(ut.TextPresentInElement(productData.ProductName), "Cart summary is displayed and product is added to cart");
         }
     }
 }
